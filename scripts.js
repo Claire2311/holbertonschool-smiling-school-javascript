@@ -1,4 +1,4 @@
-function addCarousselCard(data) {
+function addCarousselQuote(data) {
   $("#carousel-for-quotes").append(
     $(
       `${
@@ -51,7 +51,7 @@ function listQuotes() {
       },
     }).done(function (data) {
       for (let i = 0; i < data.length; i++) {
-        addCarousselCard(data[i]);
+        addCarousselQuote(data[i]);
       }
     });
   });
