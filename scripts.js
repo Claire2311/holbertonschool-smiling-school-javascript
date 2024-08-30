@@ -1,6 +1,12 @@
 function addCarousselCard(data) {
   $("#carousel-for-quotes").append(
-    $("<div class='carousel-item'>").append(
+    $(
+      `${
+        data.id === 1
+          ? "<div class='carousel-item active'>"
+          : "<div class='carousel-item'>"
+      }`
+    ).append(
       $("<div class='row mx-auto align-items-center'>").append(
         $(
           "<div class='col-12 col-sm-2 col-lg-2 offset-lg-1 text-center'>"
@@ -25,17 +31,29 @@ function addCarousselCard(data) {
 
 function listQuotes() {
   const url = "https://smileschool-api.hbtn.info/quotes";
+
   $(document).ready(function () {
-    $.get(url)
-      .done(function (data) {
-        console.log(data[0]);
-        for (let i = 0; i < data.length; i++) {
-          addCarousselCard(data[i]);
-        }
-      })
-      .fail(function () {
-        alert("Server Error");
-      });
+    $.ajax({
+      url: url,
+      data: {
+        action: "query",
+        format: "json",
+        origin: "*",
+      },
+      method: "GET",
+      dataType: "json",
+      crossDomain: true,
+      beforeSend: function () {
+        $(".loader").show();
+      },
+      success: function (msg) {
+        $(".loader").hide();
+      },
+    }).done(function (data) {
+      for (let i = 0; i < data.length; i++) {
+        addCarousselCard(data[i]);
+      }
+    });
   });
 }
 
