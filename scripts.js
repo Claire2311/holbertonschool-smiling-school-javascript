@@ -87,8 +87,23 @@ function generateCard(data) {
 
 function addCarousselVideo(data) {
   $("#carousel-for-popular-tutorials").append(
-    $("<div>").append(generateCard(data))
+    $("<div>").addClass("carousel-slick-item").append(generateCard(data))
   );
+
+  $(document).ready(function () {
+    $("#carousel-for-popular-tutorials").slick({
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      arrows: true,
+      prevArrow:
+        '<a class="carousel-control-prev arrow-left" role="button"><img src="images/arrow_black_left.png" alt="Previous" aria-hidden="true"/><span class="sr-only">Previous</span></a>',
+      nextArrow:
+        '<a class="carousel-control-next arrow-right" role="button"><img src="images/arrow_black_right.png" alt="Next" aria-hidden="true"/><span class="sr-only">Next</span></a>',
+    });
+  });
 }
 
 function addCarousselLatestVideo(data) {
