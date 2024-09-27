@@ -57,9 +57,18 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
     ></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#carousel-for-popular-tutorials").slick({
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        });
+      });
+    </script>
 
     <!-- JavaScript -->
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
   </head>
   <body class="body">
     <header class="header">
